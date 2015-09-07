@@ -1,0 +1,38 @@
+import os
+import re
+import shutil
+import urllib
+from fnmatch import fnmatch
+# -*- coding: utf8 -*-
+ 
+#переименование картинок
+base_dir = "S:\home\mebelclub\images\\".decode("utf8")
+ 
+files = os.listdir(base_dir)
+ 
+for file_ in files :
+    if fnmatch(file_,"*.jpg"):
+        title = re.sub(r"_[0-9]{2,}", r'', file_.split('.jpg')[0]).replace("_" , " ")+".jpg"
+        print title
+        os.rename( file_ , title )
+        #os.rename(file_,urllib.unquote(file_.encode('utf-8')).decode('utf-8'))
+       
+print u"Готово"
+ 
+ 
+#скачивание картинок
+ 
+#html = urllib.urlopen("http://www.dspnd.ru/production/category/laminirovannyie-plityi/items/").read()
+#match = re.findall(r"url\((.*)\)", html) #re.search(r"url\((.*)\)", html)
+#for u in match :
+#    print u
+#
+#    url = "http://www.dspnd.ru"+u
+#    url_ = url.split("/")
+#    url_.reverse()
+#    name = url_[0]
+#
+#    img = urllib.urlopen(url).read()
+#    f = open(urllib.unquote(name.encode('utf-8')).decode('utf-8'), "wb")
+#    f.write(img)
+#    f.close()
